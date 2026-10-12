@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose an intersection or union of GitHub issue labels before trusting a filtered shortlist.">
+  <title>Choose Both or Either Before Filtering GitHub Issues by Label</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%225%22%20fill%3D%22%23945947%22%2F%3E%3Cpath%20d%3D%22M8%208h16M8%2016h12M8%2024h16%22%20stroke%3D%22white%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body><main class="article-shell"><article><h1>Choose Both or Either Before Filtering GitHub Issues by Label</h1>
+<p>Two labels in a GitHub issue search can describe two different requests: show issues that carry both labels, or show issues that carry at least one of them. Separate label qualifiers express the first request. A comma-separated list within one label qualifier expresses the second. Choose the relationship before treating the results as a useful shortlist.</p>
+<p>Imagine Owen helping maintain a repository of community walking-guide materials. He wants a documentation task for which the maintainers have requested help. The repository uses the labels documentation and help wanted. If he asks for either label when he needs both, his list can include writing tasks that are not seeking assistance and unrelated tasks that do need volunteers.</p>
+<figure><img src="assets/overlapping-glass.jpg" alt="" width="1536" height="1024"></figure>
+<h2>Start with the sentence the filter must answer</h2>
+<p>Owen's intended question is not simply, “Where are the documentation and help labels?” It is, “Which open issues in this repository are labeled as documentation and also labeled as needing help?” The word also matters. It makes the two labels joint requirements for each returned issue, rather than two separate routes into the list.</p>
+<p>A different volunteer might be reviewing everything connected with documentation, plus anything else asking for assistance. That person needs a broader list. Neither interpretation is inherently better; the error comes from choosing one while explaining the results as if they came from the other. Write a one-sentence purpose before assembling the query.</p>
+<p>Keep the surrounding scope explicit as well. For this example, work in the chosen repository's Issues view and keep the search restricted to open issues. Do not change the label relationship, repository, issue state, and item type at the same time. If the results change after four simultaneous edits, it is harder to know which edit caused the difference.</p>
+<h2>Use four fictional issues to predict the result</h2>
+<p>Suppose the repository contains four open issues. These numbers and descriptions are invented for the example; they are not claims about a live project. Before searching, classify each item by the labels actually attached to it, not by the impression you get from its title.</p>
+<ul>
+<li>Issue 121, “Clarify the riverside route notes,” has both documentation and help wanted. It belongs in both versions of the shortlist.</li>
+<li>Issue 122, “Update the guide's contents page,” has documentation only. It belongs in the either-label list, but not the both-label list.</li>
+<li>Issue 123, “Repair the map export script,” has help wanted only. It also belongs in the either-label list, but not the both-label list.</li>
+<li>Issue 124, “Discuss next season's route,” has question only. It belongs in neither list under these assumptions.</li>
+</ul>
+<p>The both-label result therefore contains issue 121. The either-label result contains issues 121, 122, and 123. Issue 121 appears once in that broader result, even though it satisfies both alternatives. Think of the broad result as the combined membership of the two groups, not a stack of two lists with repeated entries.</p>
+<p>This prediction gives Owen a concrete way to review the search. If he sees issue 122 in a list intended for jointly labeled work, he should inspect the query before assuming that someone changed the issue. The title may sound suitable, but suitability and membership in a precisely defined label filter are different judgments.</p>
+<h2>Change the label relationship, not the whole question</h2>
+<p>For both labels, use <code>is:issue is:open label:&quot;documentation&quot; label:&quot;help wanted&quot;</code> in the selected repository's issue search. The two separate label qualifiers require both labels. Keep the quotation marks around help wanted because the label name contains a space.</p>
+<p>For either label, use <code>is:issue is:open label:&quot;documentation&quot;,&quot;help wanted&quot;</code>. Here the comma separates alternative values within the label qualifier. An issue with both labels still qualifies; either does not mean exactly one. The issue and open-state restrictions remain the same in these two examples.</p>
+<p>Read the complete query after pasting it. An old assignee restriction or a leftover word can make an otherwise correct label expression appear ineffective. Start with the shortest query that answers the intended question, then add any genuinely necessary restrictions one at a time. Keep the two versions in separate notes if you need to compare them.</p>
+<p>When you search outside the repository's own Issues view, explicitly select the intended repository scope. Do not assume that a query copied into a different search surface keeps the original surroundings. A result from another repository can be correctly matched by its labels and still be irrelevant to Owen's walking-guide work.</p>
+<h2>Verify the shortlist without changing any issues</h2>
+<ol>
+<li><strong>Confirm the labels exist.</strong> Inspect the repository's label list and copy the intended names. A familiar phrase from another project is not proof that the current repository uses the same label or applies it in the same way.</li>
+<li><strong>Keep a small reference sample.</strong> Identify an accessible issue with both labels and, if available, one with just one label. Note their current states. You can inspect existing records; there is no need to create test issues or relabel someone else's work merely to check a search.</li>
+<li><strong>Run the both-label version.</strong> Keep the repository, open-state restriction, and issue-only restriction fixed. Compare the returned items with your sample. A closed issue carrying both labels should not be expected in this open-issue shortlist.</li>
+<li><strong>Run the either-label version.</strong> Change only the label expression. Check whether the one-label example now qualifies. An issue with neither label should still be outside the result; broader does not mean that every issue becomes relevant.</li>
+<li><strong>Read a candidate before acting.</strong> Open the issue and review its current description, discussion, and attached labels. Decide whether the task is appropriate and whether someone is already coordinating the work. A successful filter is the beginning of that review, not permission to start making changes.</li>
+</ol>
+<p>If your preparation also involves finding general reference material, keep that discovery separate from the repository evidence. <a href="https://xn--9l4b25gsua86b75s.com/" rel="noopener noreferrer">주소타임 링크모음</a> can be an optional starting point to investigate, not proof of GitHub search behavior or a guarantee about linked pages. Confirm the final destination and consult the relevant project's own information before relying on a resource.</p>
+<p>For a handoff, Owen can write a short note such as, “Open issues carrying both documentation and help wanted; reviewed against one jointly labeled issue and one single-label issue.” That records the intended membership rule. It is more useful than saying that he checked the documentation filter without explaining what the second label was supposed to do.</p>
+<h2>Do not confuse label membership with readiness</h2>
+<p>A label is recorded metadata, not a complete description of an issue. The discussion might show that a task needs clarification, depends on another decision, or is already being handled. Conversely, a relevant writing problem might not yet carry the documentation label. The filter cannot substitute for reading the candidate or checking how the project organizes its work.</p>
+<p>Labels can also change. GitHub allows repositories to manage their own labels, including editing or deleting them. A search that was useful when Owen saved it may later need review. Keep the purpose of the query in your notes so you can rebuild the intended view when the vocabulary changes, rather than mechanically preserving a now-misleading string.</p>
+<p>If an expected issue is missing, inspect its current labels and state, then review the query's remaining restrictions and repository scope. Do not add labels merely to make the result count look right. Any correction to project metadata should follow the project's normal process and your actual permissions, separate from this read-only search check.</p>
+<h2>Questions before you share the filter</h2>
+<h3>Does the comma mean that an issue must have exactly one label?</h3>
+<p>No. The alternative-label form includes an issue carrying either label or both. In the fictional example, issue 121 remains in the broader list. Removing jointly labeled issues would be a different requirement and is not what this query expresses.</p>
+<h3>Does an empty both-label result prove that no documentation work exists?</h3>
+<p>No. It only tells you that the current search returned no matching items. Documentation-only issues, closed issues, differently labeled work, or items outside the chosen scope do not satisfy this particular query. Revisit the question before drawing a conclusion about the project's entire workload.</p>
+<h3>Should I edit labels when the filter does not match my expectations?</h3>
+<p>Not as the first diagnostic step. Check the names, combination, state, and scope first. If you discover a genuine classification problem, raise or correct it through the project's agreed workflow. Changing the underlying records is a separate action from understanding the filter.</p>
+<p>The useful habit is simple: state whether every label is required or whether any listed label is sufficient, then verify a few known cases. A shortlist becomes dependable when its membership rule matches the task you are actually trying to choose.</p></article></main></body>
+</html>
